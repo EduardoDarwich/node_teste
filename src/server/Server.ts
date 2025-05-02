@@ -9,4 +9,4 @@ server.get('/', (_, res) => {
 });
 
 
-export {server};
+export { server };
