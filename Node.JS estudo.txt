@@ -28,7 +28,7 @@ dotenv => inicializa as variáveis ambiente do env no projeto
 ----configuração do ambiente----
 arquivo .env => arquivo onde faremos a configuração básica do servidor 
 port => define a porta usada
-Nnode_env => define o ambiente em que estamos trabalhando no momento
+Node_env => define o ambiente em que estamos trabalhando no momento
 
 
 ----boas praticas----
