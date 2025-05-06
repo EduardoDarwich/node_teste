@@ -1,15 +1,14 @@
 import {Router} from 'express';
 import {StatusCodes} from 'http-status-codes';
+import { CidadesController } from '../controllers';
+import { createBodyValidator, createQueryValidator } from '../controllers/cidades/Create';
+
 
 const router = Router();
 
-router.post('/', (req, res) => {
-    console.log(req.body);
+router.post('/cidades', CidadesController.createBodyValidator, CidadesController.create, CidadesController.createQueryValidator);
 
-    return res.status(StatusCodes.ACCEPTED).json(req.body);
-});
-
-router.post('/', (req, res) => {
+router.get('/', (req, res) => {
     return res.send('aoba')
 
 });

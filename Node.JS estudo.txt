@@ -3,7 +3,7 @@ Node.JS estudo
 ----Endpoints----
 Get => puxa algum dado, geralmente usado em consultas
 Post => cria os dados, geralmente usado no create das tabelas
-Put => atualiza os dados,
+Put => atualiza os dados
 Delete => deleta os dados
 
 ----comandos de inicialização----
@@ -44,6 +44,15 @@ tsconfig.json => arquivo onde estarão as configurações do typescript, a princ
 
 .env.example => a versão sem os dados das variáveis ambiente para o funcionamento do código, esse arquivo serve pra ser versionado junto com o código para manter o exemplo das variáveis que devem ser configuradas sem prejudicar a segurança do projeto original.
 
+middlewares => local onde é feito um tratamento intermediário nos dados antes de passar pela controller.
+services => local onde é feito o tratamento de dados externos como a comunicação com uma api.
+
 ./src/server => pasta aonde vai ficar o arquivo das configurações do servidor do código.
-./src/server/routes =>pasta onde vai ficar os endpoints usados e o tratamento das informações que chegam e saem por esses endpoints.   
+./src/server/routes => pasta onde vai ficar os endpoints usados e o tratamento das informações que chegam e saem por esses endpoints.
+./src/server/shared => pasta onde fica o conteúdo que vai ser usado em todo o código como por exemplo services e middlewares.
+
+
+----estudar posteriormente----
+zod => biblioteca alternativa ao yup
+   
  
