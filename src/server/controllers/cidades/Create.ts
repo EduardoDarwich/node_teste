@@ -11,18 +11,13 @@ interface Icidade{
 
 interface Ifilter {
     filter?: string;
+
 }
 
 const bodyValidation: yup.ObjectSchema<Icidade> = yup.object().shape({
 
     nome: yup.string().required().min(3),
     estado: yup.string().required().min(3)
-
-});
-
-const queryValidation: yup.ObjectSchema<Ifilter> = yup.object().shape({
-
-    filter: yup.string().required().min(3),
 
 });
 
@@ -48,27 +43,6 @@ export const createBodyValidator: RequestHandler = async (req, res, next) => {
      }
 }
 
-export const createQueryValidator: RequestHandler = async (req, res, next) => {
-    try{
-
-        await queryValidation.validate(req.query, {abortEarly: false});
-        return next();
- 
-     } catch (err) {
- 
-         const yupError = err as yup.ValidationError;
-         const errors: Record<string, string> = {};
-         yupError.inner.forEach( error =>{
-             
-             if(error.path === undefined ) return;
-             errors[error.path] = error.message;
- 
-         });
- 
-         return res.status(StatusCodes.BAD_REQUEST).json({ errors: errors,});
- 
-     }
-}
 
 
 
@@ -81,7 +55,14 @@ export const createQueryValidator: RequestHandler = async (req, res, next) => {
 
 
 
-export const createValidation = validation();
+
+export const createValidation = validation((getSchema) =>({
+    query: getSchema<Ifilter>(yup.object().shape({
+
+        filter: yup.string().required().min(3),
+    
+    })),
+}));
 
 
 export const create = async (req:Request<{}, {}, Icidade>, res:Response) => {
