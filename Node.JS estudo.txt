@@ -53,13 +53,9 @@ services => local onde é feito o tratamento de dados externos como a comunicaç
 
 
 ----estudar posteriormente----
-zod => biblioteca alternativa ao yup
-rever os middlewares pra estudar e entender melhor oq eles fazem
-atualizar esse arquivo
-
+zod => biblioteca alternativa ao yup e mais atual.
 
 ----fazer depois----
-tradução das mensagens de erro
-fazer o middleware do bodyvalidation
+incluir as traduções dos erros do yup no código. 
    
  
