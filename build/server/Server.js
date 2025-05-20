@@ -7,7 +7,7 @@ exports.server = void 0;
 const express_1 = __importDefault(require("express"));
 const routes_1 = require("./routes");
 require("dotenv/config");
-require("./shared/services/translationsYup");
+require("./shared/middlewares/services/translationsYup");
 const server = (0, express_1.default)();
 exports.server = server;
 server.use(express_1.default.json());

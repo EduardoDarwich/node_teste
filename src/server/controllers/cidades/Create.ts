@@ -6,62 +6,16 @@ import{validation} from '../../shared/middlewares';
 
 interface Icidade{
     nome: string;
-    estado: string;
+    
 }
-
-interface Ifilter {
-    filter?: string;
-
-}
-
-const bodyValidation: yup.ObjectSchema<Icidade> = yup.object().shape({
-
-    nome: yup.string().required().min(3),
-    estado: yup.string().required().min(3)
-
-});
-
-export const createBodyValidator: RequestHandler = async (req, res, next) => {
-    try{
-
-        await bodyValidation.validate(req.body, {abortEarly: false});
-        return next();
- 
-     } catch (err) {
- 
-         const yupError = err as yup.ValidationError;
-         const errors: Record<string, string> = {};
-         yupError.inner.forEach( error =>{
-             
-             if(error.path === undefined ) return;
-             errors[error.path] = error.message;
- 
-         });
- 
-         return res.status(StatusCodes.BAD_REQUEST).json({ errors: errors,});
- 
-     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 export const createValidation = validation((getSchema) =>({
-    query: getSchema<Ifilter>(yup.object().shape({
-
-        filter: yup.string().required().min(3),
     
-    })),
+    body: getSchema<Icidade>(yup.object().shape({
+        nome: yup.string().required().min(3),
+    
+    }))
 }));
 
 
@@ -75,5 +29,5 @@ export const create = async (req:Request<{}, {}, Icidade>, res:Response) => {
     console.log(req.body);
 
 
-    return res.send('create');
+    return res.status(StatusCodes.CREATED).json(1);
 };
