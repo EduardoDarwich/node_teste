@@ -24,7 +24,14 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "postinstall": "tsc",
+    "production": "node ./build/index.js",
     "dev": "ts-node-dev ./src/index.ts",
     "test": "jest"
+  },
+  "engines": {
+
+    "node": "16.x"
+
   }
 }
