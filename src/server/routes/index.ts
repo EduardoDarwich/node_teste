@@ -13,7 +13,7 @@ router.delete('/cidades/:id', CidadesController.deleteValidation, CidadesControl
 router.put('/cidades/:id', CidadesController.updateByIdValidation, CidadesController.updateById);
 
 router.get('/', (req, res) => {
-    return res.send('aoba')
+    return res.send('feipe é gay')
 
 });
 
