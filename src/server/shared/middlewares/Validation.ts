@@ -17,7 +17,7 @@ export const validation: TValidation = (getAllSchemas) => async (req, res, next)
 
         try {
             schema.validateSync(req[key as Tproperty], {abortEarly: false});
-            return next();
+            
              
         } catch (err) {
             const yupError = err as ValidationError;

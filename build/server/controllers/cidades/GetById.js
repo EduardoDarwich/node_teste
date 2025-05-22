@@ -42,7 +42,16 @@ exports.getByIdValidation = (0, middlewares_1.validation)(getSchema => ({
     })),
 }));
 const getById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    if (Number(req.params.id) === 99)
+        return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
+            errors: {
+                default: "n encontrado"
+            }
+        });
     console.log(req.params);
-    return res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).send('não implementado');
+    return res.status(http_status_codes_1.StatusCodes.OK).json({
+        id: req.params.id,
+        nome: 'caxias do sul'
+    });
 });
 exports.getById = getById;

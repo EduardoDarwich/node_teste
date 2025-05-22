@@ -2,13 +2,13 @@ import {Request, Response} from 'express';
 import {StatusCodes} from 'http-status-codes';
 import * as yup from 'yup';
 import{validation} from '../../shared/middlewares/';
+import { ICidade } from '../../database/models';
+import { CidadesProvider } from '../../database/providers/cidade';
 
 interface IparamProps{
     id?: number;
 }
-interface IBodyProps{
-    nome: string;
-}
+interface IBodyProps extends Omit<ICidade, 'id'>{}
 
 export const updateByIdValidation = validation(getSchema =>({
     body: getSchema<IBodyProps>(yup.object().shape({
@@ -22,15 +22,22 @@ export const updateByIdValidation = validation(getSchema =>({
 
 export const updateById = async (req:Request<IparamProps, {}, IBodyProps>, res: Response) =>  {
 
-    if (Number(req.params.id) === 99) return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-        errors:{
-            default: "n encontrado"
+if(!req.params.id) {
+    return res.status(StatusCodes.BAD_REQUEST).json({
+        errors: {
+            default: 'o parametro "id" precisa ser informado'
         }
+    })
+}
 
+const result = await CidadesProvider.updateById(req.params.id, req.body);
+if (result instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+        errors: {
+            default: result.message
+        }
     });
+}
 
-    console.log(req.params);
-    console.log(req.body);
-
-    return res.status(StatusCodes.NO_CONTENT).send()
+return res.status(StatusCodes.NO_CONTENT).json(result);
 };
