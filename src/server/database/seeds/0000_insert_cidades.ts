@@ -27,5 +27,6 @@ const cidadesTeste = [
     "dragon shrine",
     "amana shrine",
     "zamor",
-    "aldias keep"
+    "aldias keep",
+    "fazendas de shimeji"
 ]
